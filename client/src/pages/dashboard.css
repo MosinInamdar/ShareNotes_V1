@@ -1,0 +1,26 @@
+
+.dashboard .total_stat{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(70, 70, 224);
+    text-align: center;
+}
+
+.totalup, .totaldown {
+    background-color: aliceblue;
+    width: 20em;
+    height:4em;
+    padding-top: 20px;
+    border-radius: 20px;
+}
+
+.tableProp {
+    margin-top: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3rem;
+}
