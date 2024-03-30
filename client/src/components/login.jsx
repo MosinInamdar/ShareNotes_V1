@@ -15,7 +15,7 @@ const login = () => {
           />
           <button type="submit">Login</button>
           <p className="message">
-            Not registered? <a href="/Signup">Create an account</a>
+            Not registered? <a href="/register">Create an account</a>
           </p>
         </form>
       </div>

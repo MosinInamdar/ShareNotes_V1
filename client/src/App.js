@@ -7,6 +7,7 @@ import Home from './pages/home';
 import Dashboard from './pages/dashboard';
 import Navbar from './components/navbar';
 import Login from './components/login';
+import Register from './pages/register';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/" element={<Home/>} />
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
         </Routes>
       </Router>
     </div>

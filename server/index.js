@@ -6,6 +6,7 @@ import connectDB from "./mongodb/connect.js";
 import userRouter from "./routes/user.routes.js";
 import propertyRouter from "./routes/property.routes.js";
 import documentRouter from "./routes/document.routes.js";
+import errorMiddleware from "./middlewares/error-middleware.js";
 
 dotenv.config();
 
@@ -21,6 +22,8 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/properties", propertyRouter);
 app.use("/api/v1/documents", documentRouter);
 
+
+app.use(errorMiddleware);
 
 const startServer = async () => {
     try {
