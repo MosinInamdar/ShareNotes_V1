@@ -1,9 +1,13 @@
-import React from 'react'
+import HomeHeader from "../components/homeheader";
+import SearchForm from "../components/search";
 
 const home = () => {
   return (
-    <div>home</div>
-  )
-}
+    <div>
+      <HomeHeader />
+      <SearchForm />
+    </div>
+  );
+};
 
-export default home
+export default home;
