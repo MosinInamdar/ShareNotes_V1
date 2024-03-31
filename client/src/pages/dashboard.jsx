@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Profile from "../components/profile";
-import "./dashboard.css";
 import Table from "../utils/Table";
 
 const Dashboard = () => {
-  const [data, setData] =useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -16,7 +15,7 @@ const Dashboard = () => {
       const agents = await response.json();
       setData(agents);
     } catch (error) {
-        console.error("Error fetching api data", error);
+      console.error("Error fetching api data", error);
     }
   };
   return (
@@ -29,8 +28,8 @@ const Dashboard = () => {
         <div className="totaldown">Total Downloads</div>
       </div>
       <div className="tableProp">
-      <h1>History</h1>
-      <Table data = {data}/>
+        <h1>History</h1>
+        <Table data={data} />
       </div>
     </div>
   );

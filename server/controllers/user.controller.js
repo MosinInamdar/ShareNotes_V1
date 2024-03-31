@@ -13,7 +13,7 @@ const getAllUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, avatar, password } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
     const userExists = await User.findOne({ email });
 
@@ -23,10 +23,15 @@ const createUser = async (req, res) => {
       name,
       email,
       password,
-      // avatar,
     });
 
-    res.status(201).json({ newUser, toekn: await newUser.generateToken() });
+    res
+      .status(201)
+      .json({
+        newUser,
+        token: await newUser.generateToken(),
+        message: "User created successfully",
+      });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -61,12 +66,11 @@ const userLogin = async (req, res) => {
     const user = await bcrypt.compare(password, userExists.password);
 
     if (user) {
-      res
-        .status(200)
-        .json({
-          msg: "Login Successful",
-          token: await userExists.generateToken(),
-        });
+      res.status(200).json({
+        msg: "Login Successful",
+        name: userExists.name,
+        token: await userExists.generateToken(),
+      });
     } else {
       res.status(401).json({ msg: "Invalid Credentials" });
     }
