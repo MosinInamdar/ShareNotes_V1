@@ -41,7 +41,7 @@ const getUserInfoByID = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await User.findOne({ _id: id }).populate("allDocuments");
+    const user = await User.findOne({ id });
 
     if (user) {
       res.status(200).json(user);
