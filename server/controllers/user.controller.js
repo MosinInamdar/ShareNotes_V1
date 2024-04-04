@@ -25,13 +25,11 @@ const createUser = async (req, res) => {
       password,
     });
 
-    res
-      .status(201)
-      .json({
-        newUser,
-        token: await newUser.generateToken(),
-        message: "User created successfully",
-      });
+    res.status(201).json({
+      newUser,
+      token: await newUser.generateToken(),
+      message: "User created successfully",
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -41,7 +39,7 @@ const getUserInfoByID = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await User.findOne({ id });
+    const user = await User.findById({ _id: id });
 
     if (user) {
       res.status(200).json(user);
@@ -69,6 +67,7 @@ const userLogin = async (req, res) => {
       res.status(200).json({
         msg: "Login Successful",
         name: userExists.name,
+        userId: userExists._id,
         token: await userExists.generateToken(),
       });
     } else {

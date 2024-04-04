@@ -76,14 +76,18 @@ const createDocument = async (req, res, next) => {
 
 const getSpecificDocument = async (req, res) => {
   try {
-    // console.log(req.body);
-    const { id } = req.body;
+    const { id } = req.params; // Accessing the ID from URL parameters
 
     const documentFound = await Document.findById(id).populate("creator");
+    if (!documentFound) {
+      return res.status(404).json({ message: "Document not found" });
+    }
 
     res.status(200).json(documentFound);
   } catch (error) {
-    res.status(500).json("Internal server error");
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 };
 
@@ -121,8 +125,8 @@ const downloadFile = async (req, res) => {
     const file = cloudinary.url(filename, { resource_type: "raw" });
     // console.log(file);
 
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
     res.redirect(file);
   } catch (error) {
     res.status(500).json("Internal server error", error);

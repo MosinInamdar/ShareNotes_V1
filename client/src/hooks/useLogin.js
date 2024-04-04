@@ -25,12 +25,15 @@ const useLogin = () => {
 
       // Attempt to read the response body as text first
       const data = res.data.name;
+      const userid = res.data.userId;
 
       if (data.error) {
         throw new Error(data.error);
       }
 
       localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("userId", JSON.stringify(userid));
+
       setAuthUser(data);
       navigate("/dashboard");
     } catch (error) {

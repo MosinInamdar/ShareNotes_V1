@@ -21,15 +21,14 @@ const storageConfig = multer.diskStorage({
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now();
     cb(null, uniqueSuffix + file.originalname);
-  }
+  },
 });
-
 const upload = multer({ storage: storageConfig });
 
 router.route("/").get(getAllDocuments);
 router.route("/test").get(downloadFile);
 router.route("/create").post(upload.single("pdf"), createDocument);
-router.route("/finddocument").get(getSpecificDocument);
+router.get("/finddocument/:id", getSpecificDocument);
 router.route("/updatedocument").patch(updateDocument);
 
 export default router;
